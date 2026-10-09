@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dandyvibes | Entertainment</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #10101d;
+      color: white;
+    }
+    header {
+      padding: 24px 18px;
+      background: linear-gradient(135deg, #6928d9, #201142);
+      text-align: center;
+    }
+    header h1 { margin: 0; font-size: 30px; }
+    header p { color: #e5d9ff; }
+    main { max-width: 900px; margin: auto; padding: 20px; }
+    .search {
+      width: 100%;
+      padding: 15px;
+      border-radius: 12px;
+      border: 1px solid #48405c;
+      background: #232137;
+      color: white;
+      font-size: 16px;
+    }
+    h2 { margin-top: 30px; font-size: 21px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .category {
+      background: #25213b;
+      border: 1px solid #44375e;
+      border-radius: 15px;
+      padding: 25px 12px;
+      text-align: center;
+      cursor: pointer;
+      color: white;
+      font-size: 17px;
+    }
+    .category:hover { background: #422778; }
+    .message {
+      margin-top: 20px;
+      padding: 15px;
+      background: #211c35;
+      border-radius: 12px;
+      color: #d7c7f4;
+    }
+    a { color: #d5b5ff; }
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #a9a1bd;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌙 DANDYVIBES</h1>
+    <p>Your world of entertainment, all in one place.</p>
+  </header>
+
+  <main>
+    <h2>Welcome to Dandyvibes</h2>
+    <p>Discover entertainment with Luna, your assistant.</p>
+
+    <input
+      class="search"
+      id="search"
+      placeholder="🔎 Search movies, series, music..."
+      aria-label="Search entertainment"
+    >
+
+    <h2>Explore Categories</h2>
+    <div class="grid">
+      <button class="category" data-category="Movies">🎬 Movies</button>
+      <button class="category" data-category="Series">📺 Series</button>
+      <button class="category" data-category="Music">🎵 Music</button>
+      <button class="category" data-category="Kids & Animation">🧸 Kids & Animation</button>
+      <button class="category" data-category="Originals">🎥 Originals</button>
+      <button class="category" data-category="Trending">🔥 Trending</button>
+      <button class="category" data-category="Favorites">⭐ Favorites</button>
+      <button class="category" data-category="Watch History">🕒 Watch History</button>
+    </div>
+
+    <div class="message" id="message">
+      Select a category to explore Dandyvibes.
+    </div>
+
+    <h2>Our Community</h2>
+    <p>
+      <a href="https://t.me/Dandyvibes" target="_blank" rel="noopener">
+        📢 Join the Dandyvibes Telegram Channel
+      </a>
+    </p>
+  </main>
+
+  <footer>© Dandyvibes • Entertainment for everyone</footer>
+
+  <script>
+    const telegram = window.Telegram?.WebApp;
+    if (telegram) {
+      telegram.ready();
+      telegram.expand();
+    }
+
+    const message = document.getElementById("message");
+
+    document.querySelectorAll(".category").forEach(button => {
+      button.addEventListener("click", () => {
+        const category = button.dataset.category;
+        message.textContent =
+          category + " is under development. Content will appear here soon.";
+      });
+    });
+
+    document.getElementById("search").addEventListener("input", event => {
+      const query = event.target.value.trim();
+      message.textContent = query
+        ? 'Search for "' + query + '" will be available when the content catalog is connected.'
+        : "Select a category to explore Dandyvibes.";
+    });
+  </script>
+</body>
+</html>
